@@ -1,6 +1,6 @@
-import {isMatchUrl} from './util'
+import { isMatchUrl } from './util'
 
-export default function cachePublishFetch (url, opts) {
+export default function cachePublishFetch(url, opts) {
   const { expiry, ...options } = opts
 
   // Use the URL as the cache key to sessionStorage
@@ -42,7 +42,6 @@ export default function cachePublishFetch (url, opts) {
       _matchAndDispatchEvents({ url, type: 'error' })
     })
 }
-export default cachePublishFetch
 
 const _matchAndDispatchEvents = ({ url, type }) => {
   Object.entries(window.CPSF_SUBSCRIPTIONS).forEach(
