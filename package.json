@@ -1,9 +1,9 @@
 {
   "name": "cps-fetch",
   "version": "0.0.0",
-  "main": "dist/how-long-till-lunch.cjs.js",
-  "module": "dist/how-long-till-lunch.esm.js",
-  "browser": "dist/how-long-till-lunch.umd.js",
+  "main": "dist/cps-fetch.cjs.js",
+  "module": "dist/cps-fetch.esm.js",
+  "browser": "dist/cps-fetch.umd.js",
   "dependencies": {
     "object-hash": "^2.0.1"
   },
