@@ -1,6 +1,6 @@
 {
   "name": "cps-fetch",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/cps-fetch.cjs.js",
   "module": "dist/cps-fetch.esm.js",
   "browser": "dist/cps-fetch.umd.js",
