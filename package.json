@@ -1,6 +1,6 @@
 {
   "name": "cps-fetch",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "main": "dist/cps-fetch.cjs.js",
   "module": "dist/cps-fetch.esm.js",
   "browser": "dist/cps-fetch.umd.js",
@@ -8,17 +8,16 @@
     "object-hash": "^2.0.1"
   },
   "devDependencies": {
+    "release-it": "^12.4.3",
     "rollup": "^1.20.0",
     "rollup-plugin-commonjs": "^10.0.0",
-    "rollup-plugin-node-resolve": "^5.1.0",
-    "semantic-release": "^15.13.31"
+    "rollup-plugin-node-resolve": "^5.1.0"
   },
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "test": "node test/test.js",
-    "pretest": "npm run build",
-    "semantic-release": "semantic-release"
+    "pretest": "npm run build"
   },
   "files": [
     "dist"
