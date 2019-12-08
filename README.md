@@ -17,7 +17,7 @@ import pSCFetch, { publish, subscribe } from 'psc-fetch'
 `pSCFetch` function is a wrapper around fetch. It has the same signature as [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) but with an added expiry key. This expects milliseconds to indicate cache duration.
 
 ```javascript
-import pSCFetch, { publish, subscribe } from 'psc-fetch'
+import pSCFetch from 'psc-fetch'
 
 async function example(pathname) {
   const response = await pSCFetch('https://fakeexample.com/users/1', {
