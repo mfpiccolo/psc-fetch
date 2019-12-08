@@ -1,3 +1,5 @@
+import PubSub from 'pubsub-js'
+
 import { isMatchUrl } from './util'
 
 export default function cachePublishFetch(url, opts) {
@@ -11,6 +13,11 @@ export default function cachePublishFetch(url, opts) {
     const age = Date.now() - whenCached
     if (age < expiry) {
       const response = new Response(new Blob([cached]))
+      _matchAndDispatchEvents({
+        url,
+        type: 'success',
+        response
+      })
       return Promise.resolve(response)
     } else {
       localStorage.removeItem(cacheKey)
@@ -23,43 +30,49 @@ export default function cachePublishFetch(url, opts) {
   return fetch(url, options)
     .then(response => {
       if (response.status === 200) {
-        _matchAndDispatchEvents({ url, type: 'success' })
-
         let ct = response.headers.get('Content-Type')
-        if (ct && (ct.match(/application\/json/i) || ct.match(/text\//i))) {
+        if (ct && ct.match(/application\/json/i)) {
           response
             .clone()
-            .text()
+            .json()
             .then(content => {
-              localStorage.setItem(cacheKey, content)
+              localStorage.setItem(cacheKey, JSON.stringify(content))
               localStorage.setItem(cacheKey + ':ts', Date.now())
             })
         }
+        _matchAndDispatchEvents({
+          url,
+          type: 'success',
+          response: response.clone()
+        })
       }
       return response
     })
     .catch(error => {
-      _matchAndDispatchEvents({ url, type: 'error' })
+      _matchAndDispatchEvents({ url, type: 'error', error })
     })
 }
 
-const _matchAndDispatchEvents = ({ url, type }) => {
+const _matchAndDispatchEvents = ({ url, type, response, error }) => {
   Object.entries(window.CPSF_SUBSCRIPTIONS).forEach(
     ([matcherHash, { hostMatcher, pathnameMatcher }]) => {
       const { host, pathname } = _parseURL(url)
 
       isMatchUrl({ hostMatcher, pathnameMatcher }, { host, pathname }, () => {
-        _dispatchEvent({ matcherHash, url, type })
+        _dispatchEvent({ matcherHash, url, type, response, error })
       })
     }
   )
 }
 
-const _dispatchEvent = ({ matcherHash, url, type, error }) => {
-  var event = new CustomEvent(matcherHash, {
-    detail: { matcherHash, ..._parseURL(url), type, error }
+const _dispatchEvent = ({ matcherHash, url, type, response, error }) => {
+  PubSub.publish(matcherHash, {
+    matcherHash,
+    ..._parseURL(url),
+    type,
+    response,
+    error
   })
-  window.dispatchEvent(event)
 }
 
 function _parseURL(url) {

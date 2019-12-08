@@ -1,4 +1,5 @@
 import hash from 'object-hash'
+import PubSub from 'pubsub-js'
 
 import { isMatchUrl } from './util'
 
@@ -7,10 +8,6 @@ export const subscribe = (options, callbacks) => {
     window.CPSF_SUBSCRIPTIONS = {}
   }
   return _addEventListener(options, callbacks)
-}
-
-export const unsubscribe = (matcherHash, callbacks) => {
-  window.removeEventListener(matcherHash, callbacks)
 }
 
 const _addEventListener = (
@@ -24,14 +21,18 @@ const _addEventListener = (
     pathnameMatcher
   }
 
-  window.addEventListener(matcherHash, event => {
-    const { type, host, pathname, search } = event.detail
+  const callback = (_matcherHash, event) => {
+    const { type, host, pathname, search } = event
 
     isMatchUrl(
       { hostMatcher, pathnameMatcher },
       { host, pathname, search },
-      () => callbacks[type](event)
+      () => callbacks[type] && callbacks[type](event)
     )
-  })
-  return { matcherHash, callbacks }
+  }
+  return PubSub.subscribe(matcherHash, callback)
+}
+
+export const unsubscribe = token => {
+  PubSub.unsubscribe(token)
 }
