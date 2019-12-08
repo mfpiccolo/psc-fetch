@@ -23,7 +23,7 @@ export default function cachePublishFetch(url, opts) {
   return fetch(url, options)
     .then(response => {
       if (response.status === 200) {
-        _matchAndDispatchEvents({ url, type: 'success' })
+        _matchAndDispatchEvents({ url, type: 'success', response })
 
         let ct = response.headers.get('Content-Type')
         if (ct && (ct.match(/application\/json/i) || ct.match(/text\//i))) {
@@ -39,11 +39,11 @@ export default function cachePublishFetch(url, opts) {
       return response
     })
     .catch(error => {
-      _matchAndDispatchEvents({ url, type: 'error' })
+      _matchAndDispatchEvents({ url, type: 'error', error })
     })
 }
 
-const _matchAndDispatchEvents = ({ url, type }) => {
+const _matchAndDispatchEvents = ({ url, type, response, error }) => {
   Object.entries(window.CPSF_SUBSCRIPTIONS).forEach(
     ([matcherHash, { hostMatcher, pathnameMatcher }]) => {
       const { host, pathname } = _parseURL(url)
