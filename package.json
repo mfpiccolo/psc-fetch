@@ -1,6 +1,6 @@
 {
   "name": "psc-fetch",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "dist/psc-fetch.cjs.js",
   "module": "dist/psc-fetch.esm.js",
   "browser": "dist/psc-fetch.umd.js",
