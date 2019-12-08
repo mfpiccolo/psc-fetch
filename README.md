@@ -23,22 +23,31 @@ async function example(pathname) {
 Here is an example of how you could use this with React hooks.
 
 ```javascript
-useEffect(() => {
-  const callbacks = {
-    loading: () => console.log('loading'),
-    success: () => console.log('success'),
-    error: () => console.log('error')
-  }
+import React, { useState, useEffect } from 'react'
+import { subscribe, unsubscribe } from 'psc-fetch'
 
-  const token = subscribe({
-    hostMatcher: 'https://fakeexample.com',
-    pathnameMatcher: /users\/\d/,
-    callbacks
-  })
-  return () => {
-    unsubscribe(token, callbacks)
-  }
-}, [])
+export default function Loader() {
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    const callbacks = {
+      loading: () => setLoading(true),
+      success: () => setLoading(false),
+      error: () => alert('error')
+    }
+
+    const token = subscribe({
+      hostMatcher: 'fakeexample.com',
+      pathnameMatcher: /users\/\d/,
+      callbacks
+    })
+    return () => {
+      unsubscribe(token, callbacks)
+    }
+  }, [])
+
+  return loading && <Spinner />
+}
 ```
 
 ## React Demo
