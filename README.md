@@ -72,7 +72,7 @@ Most applications that use `pcs-fetch` (same if you are using `fetch`) would hav
 
 Subscribers can be anywhere in the tree no matter where the fetch is being called. This [Loader](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/Loader.js) is being passed a subscription which is handling the loading state based on the callbacks. You can see it works even at the top level [App](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/App.js#L12) component even when child components fetch. You will also notice that the top level loader is [subscribing](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/api.js#L7) to anything coming from that particual host api where [other Loaders](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/PostsPage.js#L21) are more specific to routes.
 
-The [PostsPage](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/PostsPage.js) is a good example of using the [api abstraction](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/api.js).
+The [PostsPage](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/PostsPage.js) is a good example of using an [api abstraction](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/api.js).
 
 The [PostPage](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/PostPage.js) is an exmaple of using the subcribe api directly and [using the subscription data for state](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/PostPage.js#L17).
 
