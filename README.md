@@ -43,4 +43,6 @@ useEffect(() => {
 
 ## React Demo
 
+This demo app shows how you can use this to implement caching and loading states easily throughout the tree.
+
 https://github.com/mfpiccolo/demo-http-cache
