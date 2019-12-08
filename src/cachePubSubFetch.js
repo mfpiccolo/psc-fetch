@@ -49,15 +49,15 @@ const _matchAndDispatchEvents = ({ url, type, response, error }) => {
       const { host, pathname } = _parseURL(url)
 
       isMatchUrl({ hostMatcher, pathnameMatcher }, { host, pathname }, () => {
-        _dispatchEvent({ matcherHash, url, type })
+        _dispatchEvent({ matcherHash, url, type, response, error })
       })
     }
   )
 }
 
-const _dispatchEvent = ({ matcherHash, url, type, error }) => {
+const _dispatchEvent = ({ matcherHash, url, type, response, error }) => {
   var event = new CustomEvent(matcherHash, {
-    detail: { matcherHash, ..._parseURL(url), type, error }
+    detail: { matcherHash, ..._parseURL(url), type, response, error }
   })
   window.dispatchEvent(event)
 }
