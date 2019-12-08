@@ -26,11 +26,11 @@ const _addEventListener = (
 
   window.addEventListener(matcherHash, event => {
     const { type, host, pathname, search } = event.detail
-
+    console.log(event.detail)
     isMatchUrl(
       { hostMatcher, pathnameMatcher },
       { host, pathname, search },
-      () => callbacks[type](event)
+      () => callbacks[type](event.detail)
     )
   })
   return { matcherHash, callbacks }
