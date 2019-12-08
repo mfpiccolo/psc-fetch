@@ -27,7 +27,7 @@ const _addEventListener = (
     isMatchUrl(
       { hostMatcher, pathnameMatcher },
       { host, pathname, search },
-      () => callbacks[type] && callbacks[type](event)
+      () => callbacks && callbacks[type] && callbacks[type](event)
     )
   }
   return PubSub.subscribe(matcherHash, callback)
