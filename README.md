@@ -9,7 +9,7 @@ This is a lightweight library focused on adding Pub/Sub and caching apis to `fet
 ## Import
 
 ```javascript
-import import pSCFetch, { publish, subscribe } from 'psc-fetch'
+import pSCFetch, { publish, subscribe } from 'psc-fetch'
 ```
 
 ## Fetch and Caching
@@ -28,7 +28,7 @@ async function example(pathname) {
 
 ## Pub/Sub
 
-`subscribe` takes in matchers and callbacks. Matchers can be strings for exact match or regex. These are used to match against the fetch url. If a fetch is made that matches the matchers it will call the associated callbacks for "loading", "success" and "error".
+`subscribe` takes in matchers and callbacks. Matchers can be strings for exact match or regex. These are used to match against the fetch url. If a fetch is made that matches the matchers it will call the associated callbacks for `loading`, `success` and `error`.
 
 Here is an example of how you could use this with React hooks.
 
@@ -72,10 +72,10 @@ A few highlights from the demo:
 
 Most applications that use `pcs-fetch` (same if you are using `fetch`) would have use an abstraction like [this api file](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/api.js).
 
-Subscribers can be anywhere in the tree no matter where the fetch is being called. This [Loader](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/Loader.js) is being passed a subscription which is handling the loading state based on the callbacks. You can see it works even at the top level [App](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/App.js#L12) component even when child components fetch. You will also notice that the top level loader is [subscribing](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/api.js#L7) to anything coming from that particual host api where [other Loaders](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/PostsPage.js#L21) are more specific to routes.
+Subscribers can be anywhere in the tree no matter where the fetch is being called. This [Loader](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/Loader.js) is being passed a subscription which is handling the loading state based on the callbacks. You can see it works even at the top level [App](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/App.js#L12) component even when child components fetch. You will also notice that the top level loader is [subscribing](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/api.js#L7) to anything coming from that particular host api where [other Loaders](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/PostsPage.js#L21) are more specific to routes.
 
 The [PostsPage](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/PostsPage.js) is a good example of using an [api abstraction](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/api.js).
 
-The [PostPage](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/PostPage.js) is an exmaple of using the subcribe api directly and [using the subscription data for state](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/PostPage.js#L17).
+The [PostPage](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/PostPage.js) is an example of using the subscribe api directly and [using the subscription data for state](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/PostPage.js#L17).
 
-The [UserPage](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/PostPage.js) is an exmaple of using the subcribe api directly but using the [response direclty](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/UserPage.js).
+The [UserPage](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/PostPage.js) is an example of using the subscribe api directly but using the [response directly](https://github.com/mfpiccolo/demo-psc-fetch/blob/master/src/UserPage.js).
