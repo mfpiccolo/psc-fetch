@@ -11,7 +11,7 @@ import pSCFetch, { publish, subscribe } from 'psc-fetch'
 
 async function example(pathname) {
   const response = await pSCFetch('https://fakeexample.com/users/1', {
-    expiry: 6000 // milliseconds until the same fetch can be made
+    expiry: 6000 // milliseconds while localstorage cache will be returned instead of new fetch
   })
 }
 ```

@@ -5,7 +5,8 @@
   "module": "dist/psc-fetch.esm.js",
   "browser": "dist/psc-fetch.umd.js",
   "dependencies": {
-    "object-hash": "^2.0.1"
+    "object-hash": "^2.0.1",
+    "pubsub-js": "^1.7.0"
   },
   "devDependencies": {
     "release-it": "^12.4.3",
