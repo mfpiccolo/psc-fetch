@@ -64,7 +64,9 @@ export default function Loader() {
 
 This demo app shows how you can use this to implement caching and loading states easily throughout the tree.
 
-[Demo React App](https://github.com/mfpiccolo/demo-psc-fetch)
+[Demo React App Repo](https://github.com/mfpiccolo/demo-psc-fetch)
+
+[Demo React App CodeSandbox](https://codesandbox.io/s/agitated-proskuriakova-5nf5k)
 
 A few highlights from the demo:
 
