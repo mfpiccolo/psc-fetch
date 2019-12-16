@@ -66,7 +66,7 @@ This demo app shows how you can use this to implement caching and loading states
 
 [Demo React App Repo](https://github.com/mfpiccolo/demo-psc-fetch)
 
-[Demo React App CodeSandbox](https://codesandbox.io/s/agitated-proskuriakova-5nf5k)
+[Demo React App](https://stackblitz.com/edit/react-qmxwsw)
 
 A few highlights from the demo:
 
